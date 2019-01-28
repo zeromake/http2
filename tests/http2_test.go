@@ -4,6 +4,7 @@ import (
 	"net"
 	"testing"
 
+	"github.com/zeromake/http2"
 	"github.com/zeromake/http2/tests/utils"
 )
 
@@ -17,5 +18,6 @@ func TestHttp2(t *testing.T) {
 		panic(err)
 	}
 	go server.Accept()
-
+	frame := http2.FrameHeader{}
+	t.Error(frame)
 }
