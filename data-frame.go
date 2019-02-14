@@ -9,7 +9,7 @@ type DataFrame struct {
 // ParseDataFrame 解析
 func ParseDataFrame(fh *FrameHeader, payload []byte) (*DataFrame, error) {
 	if fh.StreamID == 0 {
-		return nil, connError{ErrCodeProtocol, "DATA frame with stream ID 0"}
+		return nil, ConnError{ErrCodeProtocol, "DATA frame with stream ID 0"}
 	}
 	f := &DataFrame{FrameHeader: *fh}
 
@@ -22,7 +22,7 @@ func ParseDataFrame(fh *FrameHeader, payload []byte) (*DataFrame, error) {
 		}
 	}
 	if int(padSize) > len(payload) {
-		return nil, connError{ErrCodeProtocol, "pad size larger than data payload"}
+		return nil, ConnError{ErrCodeProtocol, "pad size larger than data payload"}
 	}
 	f.Data = payload[:len(payload)-int(padSize)]
 	return f, nil

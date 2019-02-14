@@ -21,14 +21,14 @@ type PriorityFrame struct {
 // ParsePriorityFrame parse priority frame
 func ParsePriorityFrame(fh *FrameHeader, payload []byte) (*PriorityFrame, error) {
 	if fh.StreamID == 0 {
-		return nil, connError{
+		return nil, ConnError{
 			ErrCodeProtocol,
 			"PRIORITY frame with stream ID 0",
 		}
 	}
 	var payloadLength = len(payload)
 	if payloadLength != 5 {
-		return nil, connError{
+		return nil, ConnError{
 			ErrCodeFrameSize,
 			fmt.Sprintf(
 				"PRIORITY frame payload size was %d; want 5",

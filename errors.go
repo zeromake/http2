@@ -82,11 +82,12 @@ func (e StreamError) Error() string {
 	return fmt.Sprintf("stream error: stream ID %d; %v", e.StreamID, e.Code)
 }
 
-type connError struct {
+// ConnError 连接错误
+type ConnError struct {
 	Code   ErrCode
 	Reason string
 }
 
-func (e connError) Error() string {
+func (e ConnError) Error() string {
 	return fmt.Sprintf("http2: connection error: %v: %v", e.Code, e.Reason)
 }

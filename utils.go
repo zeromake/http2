@@ -22,7 +22,8 @@ func readUint32(p []byte) ([]byte, uint32, error) {
 
 var frameCache = &sync.Pool{
 	New: func() interface{} {
-		return make([]byte, FrameHeaderLen)
+		buf := make([]byte, FrameHeaderLen)
+		return &buf
 	},
 }
 
